@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let weight=window.prompt("Nhập cân nặng của ban!")
+        let height=window.prompt("Nhập chiều cao của ban!")
+    //    function  calcBMI(weight,height)
+    //    {
+    //     return BMI=weight/(height)^2
+    //    }
+    //    console.log(window.prompt)
+    let calcBMI=(weight/(height)^2);
+    if(calcBMI<18.5)
+    {
+        console.log("Thiếu cân!")
+    }
+    else if(18.5<=calcBMI<=23){
+        console.log("Bình thường!")
+    }
+    else if(23<=calcBMI<25){
+        console.log("Thừa cân!")
+    }
+    else{
+        console.log("Béo phì!")
+    }
+    
+
+    </script>
+</body>
+</html>

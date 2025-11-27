@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function printSquareNumber(limitInput) {
+        const n = parseInt(limitInput);
+        if (isNaN(n) || n < 4) {
+          console.log(
+            "Không có số chính phương nào trong phạm vi này!"
+          );
+          return;
+        }
+
+        console.log(`Các số chính phương từ 2 đến ${n} là:`);
+        let squareNumbers = [];
+
+        for (let i = 2; i <= n; i++) {
+          const squareRoot = Math.sqrt(i);
+
+          if (Number.isInteger(squareRoot)) {
+            squareNumbers.push(i);
+          }
+        }
+
+        console.log(squareNumbers.join(", "));
+      }
+
+      
+
+      const limitInput = window.prompt(
+        "Nhập số:"
+      );
+      printSquareNumber(limitInput);
+    </script>
+  </body>
+</html>

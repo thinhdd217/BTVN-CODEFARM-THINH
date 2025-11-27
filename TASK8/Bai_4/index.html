@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function isTriangle(aInput, bInput, cInput) {
+        const a = parseFloat(aInput);
+        const b = parseFloat(bInput);
+        const c = parseFloat(cInput);
+
+        if (isNaN(a) || isNaN(b) || isNaN(c) || a <= 0 || b <= 0 || c <= 0) {
+          console.log("Cảnh báo: Các cạnh phải là số dương hợp lệ.");
+          return false;
+        }
+
+        if (a + b > c && a + c > b && b + c > a) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      const sideA = window.prompt("Nhập độ dài cạnh a:");
+      const sideB = window.prompt("Nhập độ dài cạnh b:");
+      const sideC = window.prompt("Nhập độ dài cạnh c:");
+
+      const result = isTriangle(sideA, sideB, sideC);
+
+      if (result) {
+        console.log(
+          `Độ dài (${sideA}, ${sideB}, ${sideC}) có thể tạo thành một tam giác hợp lệ.`
+        );
+      } else {
+        console.log(
+          `Độ dài (${sideA}, ${sideB}, ${sideC}) KHÔNG thể tạo thành một tam giác.`
+        );
+      }
+    </script>
+  </body>
+</html>

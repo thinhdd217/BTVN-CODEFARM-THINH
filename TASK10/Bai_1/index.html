@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function countWords(str) {
+        let cleanedStr = str.trim();
+
+        if (cleanedStr.length === 0) {
+          return 0;
+        }
+        cleanedStr = cleanedStr.replace(/\s+/g, " ");
+
+        const wordsArray = cleanedStr.split(" ");
+
+        return wordsArray.length;
+      }
+
+      const example1 = "Tôi   yêu  Việt Nam";
+      const count1 = countWords(example1);
+      console.log(`Input: "${example1}"`);
+      console.log(`Kết quả: ${count1}`);
+
+      const example2 = " JavaScript   ";
+      const count2 = countWords(example2);
+      console.log(`Input: "${example2}"`);
+      console.log(`Kết quả: ${count2}`);
+
+      const example3 = " ";
+      const count3 = countWords(example3);
+      console.log(`Input: "${example3}"`);
+      console.log(`Kết quả: ${count3}`);
+    </script>
+  </body>
+</html>

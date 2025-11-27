@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách bài tập - CodeFarm</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 30px;
+            font-size: 28px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 18px 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s;
+        }
+
+        tr:hover td {
+            background-color: #f8f9ff;
+            transform: scale(1.02);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #667eea;
+            color: white;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+            th, td {
+                padding: 15px 10px;
+                font-size: 14px;
+            }
+            h1 {
+                font-size: 24px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Danh sách bài tập về nhà - CodeFarm</h1>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Buổi</th>
+                    <th>Link Vercel</th>
+                    <th>Link Github</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="badge">Day 14</span></td>
+                    <td>
+                        <a href="https://your-vercel-link-here.vercel.app" target="_blank">
+                            Xem trên Vercel →
+                        </a>
+                    </td>
+                    <td>
+                        <a href="https://github.com/thinhdd04/BTVN-CODEFARM-THINH" target="_blank">
+                            Xem trên GitHub →
+                        </a>
+                    </td>
+                </tr>
+                <!-- Thêm các buổi khác ở đây -->
+                <tr>
+                    <td><span class="badge">Day 13</span></td>
+                    <td><a href="#" target="_blank">Chưa deploy</a></td>
+                    <td><a href="#" target="_blank">Chưa push</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

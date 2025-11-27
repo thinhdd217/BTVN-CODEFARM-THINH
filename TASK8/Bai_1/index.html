@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+      
+     function calcBMI(weightInput, heightInput) {
+            
+            const weight = parseFloat(weightInput);
+            const height = parseFloat(heightInput);
+
+            if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+                return "Lỗi: Vui lòng nhập cân nặng và chiều cao là các số dương hợp lệ.";
+            }
+
+            let bmi = weight / height ** 2;
+            const roundedBMI = parseFloat(bmi.toFixed(2));
+
+            let healthSuggestion;
+
+            if (roundedBMI < 18.5) {
+                healthSuggestion = "Thiếu cân";
+            }
+            else if (roundedBMI < 23) {
+                healthSuggestion = "Bình thường";
+            } else if (roundedBMI < 25) {
+                healthSuggestion = "Thừa cân";
+            } else {
+               
+                healthSuggestion = "Béo phì";
+            }
+
+            return `Chỉ số BMI của bạn là: ${roundedBMI}. Tình trạng sức khỏe: ${healthSuggestion}.`;
+        }
+        const userWeight = window.prompt("Nhập cân nặng của bạn :");
+        const userHeight = window.prompt("Nhập chiều cao của bạn :");
+
+        const result = calcBMI(userWeight, userHeight);
+        console.log(result);
+    </script>
+</body>
+
+</html>
