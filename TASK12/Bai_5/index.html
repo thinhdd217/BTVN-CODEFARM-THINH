@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function compressArray(arr) {
+  // Trường hợp mảng rỗng
+  if (arr.length === 0) {
+    return [];
+  }
+
+  const result = [];
+  let count = 1; // Đếm số lần xuất hiện liên tiếp
+
+  // Duyệt từ phần tử thứ 2 đến cuối
+  for (let i = 1; i <= arr.length; i++) {
+    // Nếu phần tử hiện tại giống phần tử trước đó
+    if (i < arr.length && arr[i] === arr[i - 1]) {
+      count++;
+    } else {
+      // Khi gặp phần tử khác hoặc đến cuối mảng → lưu cặp [giá trị, số lần]
+      result.push([arr[i - 1], count]);
+      count = 1; // Reset đếm cho nhóm mới
+    }
+  }
+
+  return result;
+}
+
+  console.log(compressArray(["a", "a", "b", "b", "b", "c"]));  
+// [["a",2], ["b",3], ["c",1]]
+
+console.log(compressArray([1, 1, 1, 2, 2, 3]));  
+// [[1,3], [2,2], [3,1]]
+
+console.log(compressArray(["x"]));  
+// [["x",1]]
+
+console.log(compressArray([]));  
+// []
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function deepCount(arr) {
+  if (!Array.isArray(arr)) return 0;
+
+  let count = 0;
+  const stack = [...arr];
+
+  while (stack.length > 0) {
+    const item = stack.pop();
+    count++;
+
+    if (Array.isArray(item)) {
+      // Đẩy các phần tử con vào stack (đảo ngược để giữ thứ tự gốc nếu cần)
+      for (let i = item.length - 1; i >= 0; i--) {
+        stack.push(item[i]);
+      }
+    }
+  }
+
+  return count;
+} 
+console.log(deepCount([]));                    // 0
+console.log(deepCount([1, 2, 3]));             // 3
+console.log(deepCount([[[[[[[[1]]]]]]]]));     // 1
+console.log(deepCount([1, [2, [3, [4]]]]));     // 4
+    </script>
+</body>
+</html>

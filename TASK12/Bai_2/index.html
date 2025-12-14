@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function filterLongStrings(arr) {
+  return arr.filter(function(element) {
+    // Chỉ giữ lại các phần tử là chuỗi và có độ dài lớn hơn 5
+    return typeof element === 'string' && element.length > 5;
+  });
+}
+ console.log(filterLongStrings(["hello", "world", "javascript", "nodejs"]));
+// ["javascript", "nodejs"]
+
+console.log(filterLongStrings(["hi", "hello world", "a b c", "goodbye!!"]));
+// ["hello world", "goodbye!!"]
+
+console.log(filterLongStrings(["hi", "bye", "yes"]));
+// []
+    </script>
+</body>
+</html>

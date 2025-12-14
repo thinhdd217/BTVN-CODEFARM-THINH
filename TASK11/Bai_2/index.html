@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       
+const product1 = { id: 1, name: "Áo thun", price: 150000 };
+const product2 = { id: 2, name: "Quần jeans", price: 450000 };
+const product3 = { id: 3, name: "Giày sneaker", price: 890000 };
+
+// Giỏ hàng ban đầu 
+let cart = [];
+
+// 1. Thêm sản phẩm vào giỏ hàng
+function addToCart(cart, product) {
+    // Duyệt tìm xem sản phẩm đã có trong giỏ chưa
+    for (let i = 0; i < cart.length; i++) {
+        if (cart[i].id === product.id) {
+            cart[i].quantity += 1; 
+            return cart;
+        }
+    }
+   
+    cart.push({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: 1
+    });
+    return cart;
+}
+
+// 2. Xóa bớt hoặc xóa hẳn sản phẩm khỏi giỏ hàng
+function removeFromCart(cart, id) {
+    for (let i = 0; i < cart.length; i++) {
+        if (cart[i].id === id) {
+            if (cart[i].quantity > 1) {
+                cart[i].quantity -= 1;  
+            } else {
+                
+                cart.splice(i, 1);
+            }
+            return cart;
+        }
+    }
+    
+    return cart;
+}
+
+// 3. Tính tổng tiền giỏ hàng
+function getTotal(cart) {
+    let total = 0;
+    for (let i = 0; i < cart.length; i++) {
+        total += cart[i].price * cart[i].quantity;
+    }
+    return total;
+}
+
+
+addToCart(cart, product1);        // Thêm áo thun
+addToCart(cart, product2);        // Thêm quần jeans
+addToCart(cart, product1);        // Thêm tiếp áo thun → quantity = 2
+addToCart(cart, product3);        // Thêm giày
+
+
+
+removeFromCart(cart, 2);    // Xóa 1 quần jeans → còn 0 → bị xóa hẳn
+removeFromCart(cart, 1);    // Giảm áo thun từ 2 → 1
+
+console.log("Sau khi xóa bớt:", cart);
+console.log("Tổng tiền:", getTotal(cart));  // 150000 + 890000 = 1,040,000
+    </script>
+</body>
+</html>

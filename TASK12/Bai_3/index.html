@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function findMinMaxAverage(arr) {
+  // Hàm kiểm tra số nguyên tố
+  function isPrime(n) {
+    // Loại bỏ các trường hợp không phải số nguyên tố
+    if (!Number.isInteger(n) || n < 2) return false;
+    if (n === 2) return true;
+    if (n % 2 === 0) return false;
+    
+    const sqrt = Math.sqrt(n);
+    for (let i = 3; i <= sqrt; i += 2) {
+      if (n % i === 0) return false;
+    }
+    return true;
+  }
+
+  // Trường hợp mảng rỗng
+  if (arr.length === 0) {
+    return { max: undefined, maxIndex: -1, min: undefined, minIndex: -1, primeAverage: null };
+  }
+
+  let max = arr[0];
+  let maxIndex = 0;
+  let min = arr[0];
+  let minIndex = 0;
+
+  let primeSum = 0;
+  let primeCount = 0;
+
+  arr.forEach((num, index) => {
+    // Chỉ xét các phần tử là số (number)
+    if (typeof num === 'number') {
+      if (num > max || (num === max && index < maxIndex)) {
+        max = num;
+        maxIndex = index;
+      }
+      if (num < min || (num === min && index < minIndex)) {
+        min = num;
+        minIndex = index;
+      }
+
+      // Kiểm tra số nguyên tố và tính tổng
+      if (isPrime(num)) {
+        primeSum += num;
+        primeCount++;
+      }
+    }
+  });
+
+  // Tính trung bình cộng các số nguyên tố
+  const primeAverage = primeCount > 0 ? primeSum / primeCount : null;
+
+  // Làm tròn trung bình đến 2 chữ số thập phân nếu cần (theo ví dụ)
+  const roundedAverage = primeAverage !== null ? Math.round(primeAverage * 100) / 100 : null;
+
+  return {
+    max,
+    maxIndex,
+    min,
+    minIndex,
+    primeAverage: roundedAverage
+  };
+}
+
+     console.log(findMinMaxAverage([3, 1, 4, 1, 5, 9, 2, 6]));
+// { max: 9, maxIndex: 5, min: 1, minIndex: 1, primeAverage: 4.4 } 
+// Số nguyên tố: 3,5,2 → tổng 10, trung bình 10/3 ≈ 3.333... → 3.33
+
+console.log(findMinMaxAverage([5, 5, 2, 2, 1]));
+// { max: 5, maxIndex: 0, min: 1, minIndex: 4, primeAverage: 3.5 }
+// Số nguyên tố: 5,5,2 → tổng 12, trung bình 4 → nhưng ví dụ ghi 3.5? Chú ý: 1 không phải nguyên tố
+
+console.log(findMinMaxAverage([-3, 7, -8, 11, 0]));
+// { max: 11, maxIndex: 3, min: -8, minIndex: 2, primeAverage: 9 }
+// Số nguyên tố: 7, 11 → trung bình (7+11)/2 = 9
+    </script>
+</body>
+</html>

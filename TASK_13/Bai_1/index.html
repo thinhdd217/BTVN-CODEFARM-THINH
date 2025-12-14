@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function findLongestIncreasingSequence(nums) {
+  if (nums.length === 0) return [];
+  if (nums.length === 1) return [nums[0]];
+
+  return nums.reduce(
+    (acc, num) => {
+      // Lấy phần tử cuối của dãy hiện tại
+      const lastInCurrent = acc.current[acc.current.length - 1];
+
+      // Nếu số hiện tại lớn hơn phần tử cuối → tiếp tục dãy hiện tại
+      if (num === lastInCurrent + 1) {
+        acc.current.push(num);
+      } else {
+        // Bắt đầu dãy mới chỉ chứa phần tử hiện tại
+        acc.current = [num];
+      }
+
+      // So sánh độ dài: nếu dãy hiện tại dài hơn dãy tốt nhất → cập nhật best
+      if (acc.current.length > acc.best.length) {
+        acc.best = [...acc.current]; // sao chép để tránh tham chiếu
+      }
+
+      return acc;
+    },
+    { current: [nums[0]], best: [nums[0]] } // giá trị khởi tạo
+  ).best;
+}
+
+  console.log(findLongestIncreasingSequence([1, 2, 3, 4, 5])); 
+// [1, 2, 3, 4, 5]
+
+console.log(findLongestIncreasingSequence([5, 4, 3, 2, 1])); 
+// [5] (không có dãy tăng dài hơn 1)
+
+console.log(findLongestIncreasingSequence([1])); 
+// [1]
+
+console.log(findLongestIncreasingSequence([])); 
+// []
+
+console.log(findLongestIncreasingSequence([1, 3, 2, 4, 5, 6, 8])); 
+// [4, 5, 6]
+    </script>
+</body>
+</html>

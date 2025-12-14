@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function summarizeRevenue(orders) {
+  return orders
+    .flatMap(order => order.items)    // "Làm phẳng" tất cả items từ các order
+    .reduce((acc, item) => {
+      const product = item.product;
+      const revenue = item.qty * item.price;
+
+      // Nếu sản phẩm đã có → cộng dồn, chưa có → khởi tạo
+      acc[product] = (acc[product] || 0) + revenue;
+
+      return acc;
+    }, {});
+} 
+const orders = [
+  {
+    id: 1,
+    items: [
+      { product: "A", qty: 2, price: 100 },
+      { product: "B", qty: 1, price: 200 },
+    ],
+  },
+  {
+    id: 2,
+    items: [
+      { product: "A", qty: 1, price: 100 },
+      { product: "C", qty: 4, price: 50 },
+    ],
+  },
+];
+
+console.log(summarizeRevenue(orders));
+// Kết quả:
+// { A: 300, B: 200, C: 200 }
+    </script>
+</body>
+</html>

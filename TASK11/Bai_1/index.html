@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const numbers = [2, 15, 30, 55, 60, 77, 90];
+
+function findNearest(arr, x) {
+    // Nếu mảng rỗng thì trả về undefined
+    if (arr.length === 0) return undefined;
+
+    // Bắt đầu bằng phần tử đầu tiên là "gần nhất"
+    let nearest = arr[0];
+    let minDiff = Math.abs(arr[0] - x);  // khoảng cách tuyệt đối
+
+    // Duyệt từ phần tử thứ 2 trở đi
+    for (let i = 1; i < arr.length; i++) {
+        let currentDiff = Math.abs(arr[i] - x);
+
+        // Nếu phần tử hiện tại gần x hơn thì cập nhật nearest
+        if (currentDiff < minDiff) {
+            minDiff = currentDiff;
+            nearest = arr[i];
+        }
+    }
+
+    return nearest;
+}
+
+
+console.log(findNearest(numbers, 50));  // Kết quả: 55
+console.log(findNearest(numbers, 62));  // Kết quả: 60
+    </script>
+    
+</body>
+</html>
