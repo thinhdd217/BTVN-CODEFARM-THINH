@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Array.prototype.forEach2 = function (callback) {
+  const originalLength = this.length;
+
+  for (let i = 0; i < originalLength; i++) {
+    if (i in this) {
+      callback(this[i], i, this);
+    }
+  }
+}; 
+// Test 1: Mảng bình thường
+const arr1 = [10, 20, 30];
+arr1.forEach2((val, idx) => {
+  console.log(`Index ${idx}: ${val}`);
+});
+
+// Test 2: Mảng có empty slots
+const arr2 = [1, , , 4, , 6];
+arr2.forEach2((val, idx) => {
+  console.log(`Index ${idx}: ${val}`);
+});
+
+// Test 3: Thay đổi mảng trong callback (không ảnh hưởng số lần lặp)
+const arr3 = [1, 2, 3];
+arr3.forEach2((val, idx) => {
+  console.log(`Index ${idx}: ${val}`);
+  arr3.push(999); 
+});
+
+    </script>
+</body>
+</html>

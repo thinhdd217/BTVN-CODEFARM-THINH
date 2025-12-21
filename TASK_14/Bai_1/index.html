@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+Array.prototype.map2 = function(callback) {
+    
+    const newArray = [];
+    const originalLength = this.length;
+    for (let index = 0; index < originalLength; index++) { 
+        if (index in this) {   
+            const currentValue = this[index];
+            const transformedValue = callback(currentValue, index, this);
+            newArray[index] = transformedValue;
+        }
+   
+    }
+    return newArray;
+};
+// Trường hợp 1: Mảng bình thường
+const arr1 = [10, 20, 30];
+const res1 = arr1.map2((value) => value * 3);
+console.log(res1);        
+console.log(res1.length); 
+
+// Trường hợp 2: Mảng có empty slots
+const arr2 = [1, , , 4, , 6];
+const res2 = arr2.map2((value) => value * 2);
+console.log(res2);       
+console.log(res2.length);  
+
+// Trường hợp 3: Mảng rỗng
+const arr3 = [];
+console.log(arr3.map2(v => v));  
+
+// Trường hợp 4: Mảng có undefined (khác empty)
+const arr4 = [undefined, 2, , undefined];
+const res4 = arr4.map2(v => v || 0);
+console.log(res4);        
+    </script>
+</body>
+</html>

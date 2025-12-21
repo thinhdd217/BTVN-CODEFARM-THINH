@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function sortUsersByName(users) {
+  return users.slice().sort((a, b) => {
+  
+    const getNameParts = (fullName) => {
+      const parts = fullName.trim().split(/\s+/);
+      if (parts.length === 0) return { name: "", family: "" };
+      const name = parts[parts.length - 1]; 
+      const family = parts.slice(0, -1).join(" "); 
+      return { name, family };
+    };
+
+    const { name: nameA, family: familyA } = getNameParts(a.fullName);
+    const { name: nameB, family: familyB } = getNameParts(b.fullName);
+
+    const nameCompare = nameA.localeCompare(nameB, "vi", { sensitivity: "base" });
+
+    if (nameCompare === 0) {
+      return familyA.localeCompare(familyB, "vi", { sensitivity: "base" });
+    }
+
+    return nameCompare;
+  });
+}
+const users = [
+  { fullName: "Nguyễn Minh Hoàng" },
+  { fullName: "Nguyễn Đức Hoàng" },
+  { fullName: "Lê Văn" },
+  { fullName: "Lê Văn Tình" },
+  { fullName: "Lê Nin" },
+  { fullName: "Trần Thị Hoa" },
+  { fullName: "Đặng Văn Đạt" },
+];
+
+const sorted = sortUsersByName(users);
+console.log(sorted.map(u => u.fullName));
+    </script>
+</body>
+</html>

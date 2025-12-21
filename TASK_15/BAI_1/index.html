@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function convertArrayToObject(array) {
+  const result = {};
+
+  array.forEach(item => {
+    const [key, value] = item.split(':');
+    if (key && value !== undefined) {
+      result[key.trim()] = value.trim();
+    }
+  });
+
+  return result;
+} 
+const arrayString = ["name:John", "age:30", "city:NY"];
+console.log(convertArrayToObject(arrayString));
+
+
+const arrayString2 = ["name : Alice", " score : 95", "country:VN"];
+console.log(convertArrayToObject(arrayString2));
+
+
+const arrayString3 = ["key:value", "", "invalid", "good:ok"];
+console.log(convertArrayToObject(arrayString3));
+
+    </script>
+</body>
+</html>
