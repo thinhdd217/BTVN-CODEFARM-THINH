@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đồng Hồ Số</title>
+    <style>
+      body {
+        background-color: #f4f4f4;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #clock {
+        font-size: 3em;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-weight: bold;
+        text-align:  center;
+        padding: 30px 50px;
+        background-color: #333;
+        color: #00ff00;
+        border-radius: 15px;
+        width: 400px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        letter-spacing: 3px;
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+   
+    <div id="clock"></div>
+
+  
+    <script >
+
+
+
+function formatTimeUnit(unit) {
+    return unit < 10 ? `0${unit}` : unit;
+}
+
+
+function updateClock() {
+    const now = new Date();
+
+    const hours = formatTimeUnit(now.getHours());
+    const minutes = formatTimeUnit(now.getMinutes());
+    const seconds = formatTimeUnit(now.getSeconds());
+
+   
+    const timeString = `${hours}:${minutes}:${seconds}`;
+
+   
+    document.getElementById('clock').textContent = timeString;
+}
+
+
+updateClock();
+
+
+setInterval(updateClock, 1000);
+    </script>
+  </body>
+</html>

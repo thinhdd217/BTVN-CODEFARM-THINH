@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chuyển Đổi Dark Mode</title>
+    <style>
+      body {
+        transition: background-color 0.3s ease, color 0.3s ease;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+      }
+
+      .light-mode {
+        background-color: white;
+        color: black;
+      }
+
+      .dark-mode {
+        background-color: #333;
+        color: white;
+      }
+
+      button {
+        padding: 12px 24px;
+        font-size: 1.1em;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        background-color: #008cba;
+        color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      button:hover {
+        background-color: #007b9a;
+      }
+    </style>
+  </head>
+  <body class="light-mode">
+    <button id="toggleBtn">Chuyển chế độ</button>
+
+    
+    <script >
+
+
+function toggleMode() {
+    if (document.body.classList.contains('light-mode')) {
+        
+        document.body.classList.replace('light-mode', 'dark-mode');
+        localStorage.setItem('theme', 'dark-mode');
+    } else {
+     
+        document.body.classList.replace('dark-mode', 'light-mode');
+        localStorage.setItem('theme', 'light-mode');
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+
+    
+    if (savedTheme === 'dark-mode' || savedTheme === 'light-mode') {
+        document.body.classList.remove('light-mode', 'dark-mode'); 
+        document.body.classList.add(savedTheme);
+    } else {
+      
+        document.body.classList.add('light-mode');
+        localStorage.setItem('theme', 'light-mode');
+    }
+
+   
+    document.getElementById('toggleBtn').addEventListener('click', toggleMode);
+});
+    </script>
+  </body>
+</html>
