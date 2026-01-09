@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hiệu Ứng Accordion</title>
+  <style>
+    body {
+      background-color: #f9f9f9;
+      font-family: Arial, sans-serif;
+    }
+    .accordion {
+      width: 600px;
+      max-width: 100%;
+      margin: 50px auto;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .accordion-item {
+      border-bottom: 1px solid #ddd;
+    }
+    .accordion-item:last-child {
+      border-bottom: none;
+    }
+    .accordion-question {
+      background-color: #f4f4f4;
+      padding: 18px;
+      cursor: pointer;
+      margin: 0;
+      font-size: 1.1em;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+    .accordion-question:hover {
+      background-color: #e8e8e8;
+    }
+    .accordion-question::after {
+      content: "+";
+      font-size: 1.5em;
+      color: #555;
+      transition: transform 0.3s ease;
+    }
+    .accordion-question.active::after {
+      content: "−";
+      transform: rotate(0);
+    }
+    .accordion-answer {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 18px;
+      background-color: #fff;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+    .accordion-answer.active {
+      max-height: 300px;
+      padding: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="accordion">
+    <div class="accordion-item">
+      <h3 class="accordion-question">Câu hỏi 1: HTML là gì?</h3>
+      <div class="accordion-answer">
+        HTML (HyperText Markup Language) là ngôn ngữ đánh dấu dùng để tạo cấu trúc cho trang web. Nó định nghĩa các thành phần như tiêu đề, đoạn văn, liên kết, hình ảnh, bảng biểu, v.v.
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h3 class="accordion-question">Câu hỏi 2: CSS có tác dụng gì?</h3>
+      <div class="accordion-answer">
+        CSS (Cascading Style Sheets) dùng để định dạng và trang trí giao diện cho trang web. Nó kiểm soát màu sắc, font chữ, khoảng cách, bố cục, hiệu ứng hover, responsive design, v.v.
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h3 class="accordion-question">Câu hỏi 3: JavaScript làm được gì?</h3>
+      <div class="accordion-answer">
+        JavaScript là ngôn ngữ lập trình chạy phía client (trình duyệt) giúp trang web trở nên tương tác: xử lý sự kiện click, validate form, gọi API, thay đổi nội dung động, tạo animation, và nhiều tính năng phức tạp hơn khi kết hợp với các framework như React, Vue,...
+      </div>
+    </div>
+
+  
+    <div class="accordion-item">
+      <h3 class="accordion-question">Câu hỏi 4: Accordion hoạt động như thế nào?</h3>
+      <div class="accordion-answer">
+        Accordion sử dụng JavaScript để toggle class "active" khi click vào tiêu đề. Khi có class active, phần trả lời sẽ có max-height lớn hơn và padding, kết hợp với CSS transition tạo hiệu ứng mở/đóng mượt mà.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const questions = document.querySelectorAll(".accordion-question");
+
+      questions.forEach(question => {
+        question.addEventListener("click", function () {
+          const answer = this.nextElementSibling;
+          const isActive = this.classList.contains("active");
+
+       
+          document.querySelectorAll(".accordion-question").forEach(q => {
+            q.classList.remove("active");
+          });
+          document.querySelectorAll(".accordion-answer").forEach(a => {
+            a.classList.remove("active");
+          });
+
+         
+          if (!isActive) {
+            this.classList.add("active");
+            answer.classList.add("active");
+          }
+       
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

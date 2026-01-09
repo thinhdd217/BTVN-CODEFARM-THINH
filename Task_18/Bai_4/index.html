@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Typing Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    .game-container {
+      text-align: center;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    #word {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    #input {
+      padding: 10px;
+      font-size: 1.2em;
+      width: 200px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+    }
+    #score {
+      font-size: 1.5em;
+      margin: 20px 0;
+    }
+    #time {
+      font-size: 1.5em;
+      color: red;
+    }
+    #start-btn {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #start-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <h1>Typing Game</h1>
+    <div id="word">Nhấn "Start Game" để bắt đầu</div>
+    <input type="text" id="input" placeholder="Gõ từ ở đây..." disabled />
+    <div id="score">Điểm: 0</div>
+    <div id="time">Thời gian: 60</div>
+    <div id="game-over" style="font-size: 1.5em; color: #d32f2f; margin-top: 20px; display: none;"></div>
+    <button id="start-btn">Start Game</button>
+  </div>
+
+  <script>
+    const words = [
+      "apple", "banana", "cat", "dog", "elephant", "flower", "grape", "house",
+      "island", "jungle", "kite", "lemon", "mountain", "ocean", "piano",
+      "queen", "river", "sun", "tree", "umbrella", "violet", "water", "yellow",
+      "zebra", "book", "car", "door", "egg", "fish", "game", "hat", "ice",
+      "jump", "king", "lamp", "moon", "nest", "orange", "pen", "quiet",
+      "rain", "star", "table", "unicorn", "village", "window", "xylophone", "yard"
+    ];
+
+    let currentWord = "";
+    let score = 0;
+    let timeLeft = 60;
+    let timer = null;
+    let isPlaying = false;
+
+    const wordEl = document.getElementById("word");
+    const inputEl = document.getElementById("input");
+    const scoreEl = document.getElementById("score");
+    const timeEl = document.getElementById("time");
+    const startBtn = document.getElementById("start-btn");
+    const gameOverEl = document.getElementById("game-over");
+
+    function showNewWord() {
+      const randomIndex = Math.floor(Math.random() * words.length);
+      currentWord = words[randomIndex];
+      wordEl.textContent = currentWord;
+      inputEl.value = "";
+      inputEl.focus();
+    }
+
+    function startGame() {
+      score = 0;
+      timeLeft = 60;
+      isPlaying = true;
+
+      scoreEl.textContent = "Điểm: 0";
+      timeEl.textContent = "Thời gian: 60";
+      gameOverEl.style.display = "none";
+      startBtn.textContent = "Đang chơi...";
+      startBtn.disabled = true;
+      inputEl.disabled = false;
+
+      showNewWord();
+
+      timer = setInterval(() => {
+        timeLeft--;
+        timeEl.textContent = "Thời gian: " + timeLeft;
+
+        if (timeLeft <= 0) {
+          endGame();
+        }
+      }, 1000);
+    }
+
+    function endGame() {
+      clearInterval(timer);
+      isPlaying = false;
+      inputEl.disabled = true;
+      inputEl.value = "";
+      wordEl.textContent = "Hết giờ!";
+      gameOverEl.textContent = "Trò chơi kết thúc! Điểm cuối cùng của bạn: " + score;
+      gameOverEl.style.display = "block";
+      startBtn.textContent = "Chơi lại";
+      startBtn.disabled = false;
+    }
+
+    inputEl.addEventListener("input", () => {
+      const typed = inputEl.value.trim().toLowerCase();
+
+      if (typed === currentWord.toLowerCase()) {
+        score++;
+        scoreEl.textContent = "Điểm: " + score;
+        showNewWord();
+      }
+    });
+
+    startBtn.addEventListener("click", () => {
+      if (!isPlaying) {
+        startGame();
+      }
+    });
+  </script>
+</body>
+</html>

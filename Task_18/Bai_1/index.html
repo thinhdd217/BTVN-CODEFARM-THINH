@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đếm Từ và Ký Tự Còn Lại</title>
+    <style>
+      .container {
+        width: 500px;
+        margin: 50px auto;
+        font-family: Arial, sans-serif;
+      }
+      textarea {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        font-size: 1em;
+        resize: vertical;
+        box-sizing: border-box;
+      }
+      #wordCount,
+      #charCount {
+        margin-top: 10px;
+        font-size: 1.1em;
+        color: #333;
+      }
+      #charCount.warning {
+        color: #e74c3c; 
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <textarea
+        id="textInput"
+        maxlength="200"
+        placeholder="Nhập đoạn văn bản (tối đa 200 ký tự)..."
+      ></textarea>
+      <div id="wordCount">Số từ: 0</div>
+      <div id="charCount">Số ký tự còn lại: 200</div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const textarea = document.getElementById('textInput');
+        const wordCountDiv = document.getElementById('wordCount');
+        const charCountDiv = document.getElementById('charCount');
+
+        const MAX_CHARS = 200;
+
+        function updateCounts() {
+          const text = textarea.value;
+
+        
+          const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+          const wordCount = text.trim() === '' ? 0 : words.length;
+          wordCountDiv.textContent = `Số từ: ${wordCount}`;
+
+          
+          const remainingChars = MAX_CHARS - text.length;
+          charCountDiv.textContent = `Số ký tự còn lại: ${remainingChars}`;
+
+          if (remainingChars <= 20) {
+            charCountDiv.classList.add('warning');
+          } else {
+            charCountDiv.classList.remove('warning');
+          }
+        }
+
+      
+        updateCounts();
+
+       
+        textarea.addEventListener('input', updateCounts);
+      });
+    </script>
+  </body>
+</html>
